@@ -4,7 +4,7 @@ namespace Biigle\Modules\AuthNfdi;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
-class LifeScienceLoginExtendSocialite
+class NfdiLoginExtendSocialite
 {
     public function handle(SocialiteWasCalled $socialiteWasCalled): void
     {
