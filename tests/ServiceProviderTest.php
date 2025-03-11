@@ -1,8 +1,8 @@
 <?php
 
-namespace Biigle\Tests\Modules\AuthNFDI;
+namespace Biigle\Tests\Modules\AuthNfdi;
 
-use Biigle\Modules\AuthNFDI\ServiceProvider;
+use Biigle\Modules\AuthNfdi\ServiceProvider;
 use TestCase;
 
 class ServiceProviderTest extends TestCase

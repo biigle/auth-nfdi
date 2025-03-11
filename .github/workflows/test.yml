@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MODULE_NAME: AuthNFDI
+      MODULE_NAME: AuthNfdi
 
     steps:
     - uses: actions/checkout@v1

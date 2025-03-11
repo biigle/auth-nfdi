@@ -1,8 +1,8 @@
 <?php
 
-namespace Biigle\Tests\Modules\AuthNFDI\Http\Controllers;
+namespace Biigle\Tests\Modules\AuthNfdi\Http\Controllers;
 
-use Biigle\Modules\AuthNFDI\NfdiLoginId;
+use Biigle\Modules\AuthNfdi\NfdiLoginId;
 use Biigle\Role;
 use Biigle\User;
 use Exception;

@@ -1,13 +1,12 @@
 <?php
 
-namespace Biigle\Modules\AuthNFDI;
+namespace Biigle\Modules\AuthNfdi;
 
 use Biigle\Services\Modules;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use SocialiteProviders\Manager\SocialiteWasCalled;
-use SocialiteProviders\LifeScienceLogin\LifeScienceLoginExtendSocialite;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -25,7 +24,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
 
         $router->group([
-            'namespace' => 'Biigle\Modules\AuthNFDI\Http\Controllers',
+            'namespace' => 'Biigle\Modules\AuthNfdi\Http\Controllers',
             'middleware' => 'web',
         ], function ($router) {
             require __DIR__.'/Http/routes.php';
@@ -45,7 +44,7 @@ class ServiceProvider extends BaseServiceProvider
 
         Event::listen(
             SocialiteWasCalled::class,
-            [LifeScienceLoginExtendSocialite::class, 'handle']
+            [NfdiLoginExtendSocialite::class, 'handle']
         );
     }
 

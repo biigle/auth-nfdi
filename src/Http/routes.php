@@ -2,12 +2,12 @@
 
 $router->get('auth/nfdi/redirect', [
    'as'   => 'nfdi-redirect',
-   'uses' => 'NFDILoginController@redirect',
+   'uses' => 'NfdiLoginController@redirect',
 ]);
 
 $router->get('auth/nfdi/callback', [
    'as'   => 'nfdi-callback',
-   'uses' => 'NFDILoginController@callback',
+   'uses' => 'NfdiLoginController@callback',
 ]);
 
 $router->get('auth/nfdi/register', [

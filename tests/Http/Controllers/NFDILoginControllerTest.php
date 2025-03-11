@@ -1,8 +1,8 @@
 <?php
 
-namespace Biigle\Tests\Modules\AuthNFDI\Http\Controllers;
+namespace Biigle\Tests\Modules\AuthNfdi\Http\Controllers;
 
-use Biigle\Modules\AuthNFDI\NfdiLoginId;
+use Biigle\Modules\AuthNfdi\NfdiLoginId;
 use Biigle\User;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -10,7 +10,7 @@ use Laravel\Socialite\Two\User as SocialiteUser;
 use Session;
 use TestCase;
 
-class NFDILoginControllerTest extends TestCase
+class NfdiLoginControllerTest extends TestCase
 {
     public function testRedirect()
     {

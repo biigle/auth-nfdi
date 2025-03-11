@@ -1,8 +1,8 @@
 <?php
 
-namespace Biigle\Modules\AuthNFDI;
+namespace Biigle\Modules\AuthNfdi;
 
-use Biigle\Modules\AuthNFDI\Database\Factories\NFDILoginIdFactory;
+use Biigle\Modules\AuthNfdi\Database\Factories\NfdiLoginIdFactory;
 use Biigle\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -50,6 +50,6 @@ class NfdiLoginId extends Model
      */
     protected static function newFactory()
     {
-        return NFDILoginIdFactory::new();
+        return NfdiLoginIdFactory::new();
     }
 }

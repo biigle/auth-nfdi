@@ -1,6 +1,6 @@
 {
     "name": "biigle/auth-nfdi",
-    "description": "BIIGLE module to offer authentication via NFDI Login.",
+    "description": "BIIGLE module to offer authentication via Nfdi Login.",
     "keywords": ["biigle", "biigle-module"],
     "license": "GPL-3.0-only",
     "support": {
@@ -14,15 +14,19 @@
          "email": "m.zurowietz@uni-bielefeld.de"
       }
     ],
+    "require": {
+        "ext-json": "*",
+        "socialiteproviders/manager": "^4.4"
+    },
     "autoload": {
       "psr-4": {
-         "Biigle\\Modules\\AuthNFDI\\": "src"
+         "Biigle\\Modules\\AuthNfdi\\": "src"
       }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Biigle\\Modules\\AuthNFDI\\ServiceProvider"
+                "Biigle\\Modules\\AuthNfdi\\ServiceProvider"
             ]
         }
     }

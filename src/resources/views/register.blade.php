@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'Sign up via NFDI Login')
+@section('title', 'Sign up via Nfdi Login')
 @section('show-navbar', false)
 
 @section('content')
