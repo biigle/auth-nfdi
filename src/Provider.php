@@ -34,7 +34,7 @@ class Provider extends AbstractProvider
 
     protected $scopeSeparator = ' ';
 
-    protected $scopes = ['openid', 'email', 'profile'];
+    protected $scopes = ['openid', 'email'];
 
     protected function getAuthUrl($state): string
     {

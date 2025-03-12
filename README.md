@@ -13,9 +13,9 @@ Information on how to register your BIIGLE instance as a new service to Nfdi Log
 3. Configure your Nfdi Login credentials in `config/services.php` like this:
    ```php
    'nfdilogin' => [
-       'client_id' => env('NfdiLOGIN_CLIENT_ID'),
-       'client_secret' => env('NfdiLOGIN_CLIENT_SECRET'),
-       'redirect' => '/auth/nfdi/callback',
+       'client_id' => env('NFDILOGIN_CLIENT_ID'),
+       'client_secret' => env('NFDILOGIN_CLIENT_SECRET'),
+       'redirect' => '/auth/iam4nfdi/callback',
    ],
    ```
 
