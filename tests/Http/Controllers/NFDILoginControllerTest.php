@@ -15,7 +15,7 @@ class NfdiLoginControllerTest extends TestCase
     public function testRedirect()
     {
         $this->get('auth/nfdi/redirect')
-            ->assertRedirectContains('https://login.aai.lifescience-ri.eu');
+            ->assertRedirectContains('https://infraproxy.nfdi-aai.dfn.de');
     }
 
     public function testCallbackNewUser()
@@ -25,7 +25,7 @@ class NfdiLoginControllerTest extends TestCase
         $user->setToken('mytoken');
         Socialite::shouldReceive('driver->user')->andReturn($user);
 
-        $this->get('auth/nfdi/callback')
+        $this->get('auth/iam4nfdi/callback')
             ->assertSessionHas('nfdilogin-token', 'mytoken')
             ->assertRedirectToRoute('nfdi-register-form');
     }
@@ -37,7 +37,7 @@ class NfdiLoginControllerTest extends TestCase
         $user->setToken('mytoken');
         Socialite::shouldReceive('driver->user')->andReturn($user);
 
-        $this->get('auth/nfdi/callback')
+        $this->get('auth/iam4nfdi/callback')
             ->assertInvalid(['nfdi-id'])
             ->assertRedirectToRoute('login');
     }
@@ -49,7 +49,7 @@ class NfdiLoginControllerTest extends TestCase
         $user->map(['id' => $id->id]);
         Socialite::shouldReceive('driver->user')->andReturn($user);
 
-        $this->get('auth/nfdi/callback')->assertRedirectToRoute('home');
+        $this->get('auth/iam4nfdi/callback')->assertRedirectToRoute('home');
         $this->assertAuthenticatedAs($id->user);
     }
 
@@ -62,7 +62,7 @@ class NfdiLoginControllerTest extends TestCase
 
         $user = User::factory()->create();
         $this->be($user);
-        $this->get('auth/nfdi/callback')->assertRedirectToRoute('settings-authentication');
+        $this->get('auth/iam4nfdi/callback')->assertRedirectToRoute('settings-authentication');
         $this->assertAuthenticatedAs($user);
         $this->assertTrue(NfdiLoginId::where('user_id', $user->id)->where('id', 'myspecialid')->exists());
     }
@@ -76,7 +76,7 @@ class NfdiLoginControllerTest extends TestCase
 
         $user = User::factory()->create();
         $this->be($user);
-        $this->get('auth/nfdi/callback')
+        $this->get('auth/iam4nfdi/callback')
             ->assertInvalid(['nfdi-id'])
             ->assertRedirectToRoute('settings-authentication');
         $this->assertAuthenticatedAs($user);
@@ -90,7 +90,7 @@ class NfdiLoginControllerTest extends TestCase
         Socialite::shouldReceive('driver->user')->andReturn($user);
 
         $this->be($id->user);
-        $this->get('auth/nfdi/callback')->assertRedirectToRoute('settings-authentication');
+        $this->get('auth/iam4nfdi/callback')->assertRedirectToRoute('settings-authentication');
         $this->assertAuthenticatedAs($id->user);
     }
 
@@ -99,7 +99,7 @@ class NfdiLoginControllerTest extends TestCase
         config(['biigle.user_registration' => true]);
         Socialite::shouldReceive('driver->user')->andThrow(InvalidStateException::class);
 
-        $this->get('auth/nfdi/callback')
+        $this->get('auth/iam4nfdi/callback')
             ->assertInvalid(['nfdi-id'])
             ->assertRedirectToRoute('login');
     }
@@ -111,7 +111,7 @@ class NfdiLoginControllerTest extends TestCase
 
         $user = User::factory()->create();
         $this->be($user);
-        $this->get('auth/nfdi/callback')
+        $this->get('auth/iam4nfdi/callback')
             ->assertInvalid(['nfdi-id'])
             ->assertRedirectToRoute('settings-authentication');
     }
