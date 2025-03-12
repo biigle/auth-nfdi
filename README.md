@@ -18,6 +18,7 @@ Information on how to register your BIIGLE instance as a new service to Nfdi Log
        'redirect' => '/auth/iam4nfdi/callback',
    ],
    ```
+4. Run the database migrations with `php artisan migrate`.
 
 ## Developing
 
