@@ -1,6 +1,6 @@
 {
     "name": "biigle/auth-nfdi",
-    "description": "BIIGLE module to offer authentication via Nfdi Login.",
+    "description": "BIIGLE module to offer authentication via NFDI Login.",
     "keywords": ["biigle", "biigle-module"],
     "license": "GPL-3.0-only",
     "support": {
