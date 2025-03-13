@@ -18,7 +18,7 @@ class Provider extends AbstractProvider
     public const IDENTIFIER = 'NFDILOGIN';
 
     /**
-     * LifeScience Login config URL.
+     * NFDI Login config URL.
      */
     public const CONFIG_URL = 'https://infraproxy.nfdi-aai.dfn.de/.well-known/openid-configuration';
 
