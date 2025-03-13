@@ -52,7 +52,7 @@ class RegisterController extends BaseController
 
             return redirect()
                 ->back()
-                ->withErrors(['nfdi-id' => 'Could not retrieve user details from Nfdi Login. Invalid token?']);
+                ->withErrors(['nfdi-id' => 'Could not retrieve user details from NFDI Login. Invalid token?']);
         }
 
         $request->merge([
@@ -68,7 +68,7 @@ class RegisterController extends BaseController
 
             return redirect()
                 ->back()
-                ->withErrors(['nfdi-id' => 'The Nfdi Login ID is already connected with an account.']);
+                ->withErrors(['nfdi-id' => 'The NFDI Login ID is already connected with an account.']);
         }
 
         // Do not use parent::register() because this may be disabled with
@@ -89,7 +89,7 @@ class RegisterController extends BaseController
 
         $validator->setRules($rules);
         $validator->setCustomMessages([
-            'email.unique' => 'The email has already been taken. You can connect your existing account to Nfdi Login in the account authorization settings.',
+            'email.unique' => 'The email has already been taken. You can connect your existing account to NFDI Login in the account authorization settings.',
         ]);
 
         return $validator;

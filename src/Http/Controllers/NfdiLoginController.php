@@ -42,7 +42,7 @@ class NfdiLoginController extends Controller
         $lslId = NfdiLoginId::with('user')->find($user->id);
 
         if ($request->user()) {
-            // Case: The authenticated user wants to connect the account with Nfdi Login.
+            // Case: The authenticated user wants to connect the account with NFDI Login.
             if (!$lslId) {
                 NfdiLoginId::create([
                     'id' => $user->id,
@@ -50,22 +50,22 @@ class NfdiLoginController extends Controller
                 ]);
 
                 return redirect()->route('settings-authentication')
-                    ->with('message', 'Your account is now connected to Nfdi Login.')
+                    ->with('message', 'Your account is now connected to NFDI Login.')
                     ->with('messageType', 'success');
 
-            // Case: The authenticated user already connected their account with Nfdi Login.
+            // Case: The authenticated user already connected their account with NFDI Login.
             } elseif ($lslId->user_id === $request->user()->id) {
                 return redirect()->route('settings-authentication');
 
-            // Case: Another user already connected their account with Nfdi Login.
+            // Case: Another user already connected their account with NFDI Login.
             } else {
                 return redirect()
                     ->route('settings-authentication')
-                    ->withErrors(['nfdi-id' => 'The Nfdi Login ID is already connected to another account.']);
+                    ->withErrors(['nfdi-id' => 'The NFDI Login ID is already connected to another account.']);
             }
         }
 
-        // Case: The user wants to log in with Nfdi Login
+        // Case: The user wants to log in with NFDI Login
         if ($lslId) {
             Auth::login($lslId->user);
 
@@ -80,7 +80,7 @@ class NfdiLoginController extends Controller
                 ->withErrors(['nfdi-id' => 'The user does not exist and new registrations are disabled.']);
         }
 
-        // Case: A new user wants to register using Nfdi Login.
+        // Case: A new user wants to register using NFDI Login.
         $request->session()->put('nfdilogin-token', $user->token);
 
         return redirect()->route('nfdi-register-form');
