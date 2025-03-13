@@ -27,15 +27,35 @@ class Provider extends AbstractProvider
      */
     public const CACHE_KEY = 'nfdi_login_openid_config';
 
+    protected $scopes = ['openid', 'email'];
+
     /**
      * {@inheritdoc}
      */
-    protected $usesPKCE = true;
+    protected function getTokenFields($code)
+    {
+        // Remove client ID and secret because they are sent in the Authorization header.
+        $fields = parent::getTokenFields($code);
+        unset($fields['client_id']);
+        unset($fields['client_secret']);
 
-    protected $scopeSeparator = ' ';
+        return $fields;
+    }
 
-    protected $scopes = ['openid', 'email'];
+    /**
+     * {@inheritdoc}
+     */
+    protected function getTokenHeaders($code)
+    {
+        $headers = parent::getTokenHeaders($code);
+        $headers['Authorization'] = 'Basic '.base64_encode($this->clientId.':'.$this->clientSecret);
 
+        return $headers;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getAuthUrl($state): string
     {
         $config = $this->getOpenIdConfiguration();
@@ -43,6 +63,9 @@ class Provider extends AbstractProvider
         return $this->buildAuthUrlFromBase($config->authorization_endpoint, $state);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getTokenUrl(): string
     {
         $config = $this->getOpenIdConfiguration();
@@ -73,7 +96,7 @@ class Provider extends AbstractProvider
     {
         return (new User)->setRaw($user)->map([
             'id'          => $user['sub'],
-            'name'        => $user['name'],
+            'name'        => $user['name'] ?? '',
             'given_name'  => $user['given_name'],
             'family_name' => $user['family_name'],
             'email'       => $user['email'],
