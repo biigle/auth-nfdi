@@ -2,6 +2,7 @@
 
 namespace Biigle\Modules\AuthNfdi\Http\Controllers;
 
+use Biigle\User;
 use Biigle\Http\Controllers\Controller;
 use Biigle\Modules\AuthNfdi\NfdiLoginId;
 use Exception;
@@ -72,17 +73,23 @@ class NfdiLoginController extends Controller
             return redirect()->route('home');
         }
 
-        // Case: The user wants to log in (the registration form is disabled), their
-        // account does not exist yet and new registrations are disabled.
-        if (!config('biigle.user_registration')) {
-            return redirect()
-                ->route('login')
-                ->withErrors(['nfdi-id' => 'The user does not exist and new registrations are disabled.']);
+        // Case: A new user wants to register using NFDI Login.
+        if (config('biigle.user_registration')) {
+            $request->session()->put('nfdilogin-token', $user->token);
+
+            return redirect()->route('nfdi-register-form');
         }
 
-        // Case: A new user wants to register using NFDI Login.
-        $request->session()->put('nfdilogin-token', $user->token);
+        // Case: The account exists but must be connected first.
+        if (User::where('email', $user->email)->exists()) {
+            return redirect()
+                ->route('login')
+                ->withErrors(['nfdi-id' => 'The email has already been taken. You can connect your existing account to NFDI Login in the account authorization settings.']);
+        }
 
-        return redirect()->route('nfdi-register-form');
+        // Case: The account does not exist yet and new registrations are disabled.
+        return redirect()
+            ->route('login')
+            ->withErrors(['nfdi-id' => 'The user does not exist and new registrations are disabled.']);
     }
 }
