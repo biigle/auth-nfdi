@@ -2,8 +2,8 @@
 
 namespace Biigle\Tests\Modules\AuthNfdi\Http\Controllers;
 
+use Biigle\Enums\Role;
 use Biigle\Modules\AuthNfdi\NfdiLoginId;
-use Biigle\Role;
 use Biigle\User;
 use Exception;
 use Laravel\Socialite\Facades\Socialite;
