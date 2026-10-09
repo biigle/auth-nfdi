@@ -2,8 +2,8 @@
 
 namespace Biigle\Tests\Modules\AuthNfdi\Http\Controllers;
 
+use Biigle\Enums\Role;
 use Biigle\Modules\AuthNfdi\NfdiLoginId;
-use Biigle\Role;
 use Biigle\User;
 use Exception;
 use Laravel\Socialite\Facades\Socialite;
@@ -71,7 +71,7 @@ class RegisterControllerTest extends TestCase
         $this->assertSame('Joe', $user->firstname);
         $this->assertSame('User', $user->lastname);
         $this->assertSame('something', $user->affiliation);
-        $this->assertSame(Role::editorId(), $user->role_id);
+        $this->assertSame(Role::EDITOR, $user->role);
 
         $this->assertTrue(NfdiLoginId::where('user_id', $user->id)->where('id', 'mynfdiid')->exists());
     }
